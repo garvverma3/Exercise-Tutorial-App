@@ -6,7 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import Home from "./pages/Home";
-import Workouts from "./pages/Workouts.jsx";
+import Workouts from "./pages/Workouts";
 import WorkoutDetail from "./pages/WorkoutDetail.jsx";
 import Categories from "./pages/Categories.jsx";
 import About from "./pages/About.jsx";
