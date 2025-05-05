@@ -1,9 +1,8 @@
-
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
-import { Dumbbell, Biceps, Core, Armchair } from "lucide-react";
+import { Dumbbell, Armchair } from "lucide-react";
 import { Pagination, PaginationContent, PaginationItem, PaginationLink } from "@/components/ui/pagination";
 
 // Sample workout data (this would come from an API in a real app)
@@ -126,11 +125,11 @@ const WorkoutDetail = () => {
   const getBodyPartIcon = (bodyPart: string) => {
     switch (bodyPart) {
       case 'Arms':
-        return <Biceps size={18} />;
+        return <Dumbbell size={18} />;
       case 'Legs':
         return <Armchair size={18} />;
       case 'Core':
-        return <Core size={18} />;
+        return <Dumbbell size={18} />;
       case 'Full Body':
       default:
         return <Dumbbell size={18} />;
