@@ -1,33 +1,32 @@
 
 import * as React from "react";
+import { cn } from "../../lib/utils";
 
-const Pagination = ({ className, ...props }) => (
+const Pagination = ({
+  className,
+  ...props
+}) => (
   <nav
     role="navigation"
     aria-label="pagination"
-    className={`mx-auto flex w-full justify-center ${className || ''}`}
+    className={cn("mx-auto flex w-full justify-center", className)}
     {...props}
   />
 );
-Pagination.displayName = "Pagination";
 
-const PaginationContent = React.forwardRef(
-  ({ className, ...props }, ref) => (
-    <ul
-      ref={ref}
-      className={`flex flex-row items-center gap-1 ${className || ''}`}
-      {...props}
-    />
-  )
+const PaginationContent = ({
+  className,
+  ...props
+}) => (
+  <ul className={cn("flex flex-row items-center gap-1", className)} {...props} />
 );
-PaginationContent.displayName = "PaginationContent";
 
-const PaginationItem = React.forwardRef(
-  ({ className, ...props }, ref) => (
-    <li ref={ref} className={className} {...props} />
-  )
+const PaginationItem = ({
+  className,
+  ...props
+}) => (
+  <li className={cn("", className)} {...props} />
 );
-PaginationItem.displayName = "PaginationItem";
 
 const PaginationLink = ({
   className,
@@ -37,14 +36,16 @@ const PaginationLink = ({
 }) => (
   <a
     aria-current={isActive ? "page" : undefined}
-    className={`inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground ${isActive 
-      ? "border border-input bg-background hover:bg-accent hover:text-accent-foreground" 
-      : "bg-transparent hover:bg-muted hover:text-muted-foreground"} 
-      h-10 px-4 py-2 ${className || ''}`}
+    className={cn(
+      "flex h-9 w-9 items-center justify-center rounded-md border text-center text-sm transition-colors",
+      isActive
+        ? "border-[#9b87f5] bg-[#9b87f5] text-white"
+        : "border-gray-200 bg-white hover:bg-gray-100 hover:text-[#9b87f5]",
+      className
+    )}
     {...props}
   />
 );
-PaginationLink.displayName = "PaginationLink";
 
 const PaginationPrevious = ({
   className,
@@ -53,14 +54,13 @@ const PaginationPrevious = ({
   <PaginationLink
     aria-label="Go to previous page"
     size="default"
-    className={`gap-1 pl-2.5 ${className || ''}`}
+    className={cn("gap-1 pl-2.5", className)}
     {...props}
   >
-    <span>←</span>
-    <span>Previous</span>
+    <span>{"<"}</span>
+    <span className="hidden sm:inline">Previous</span>
   </PaginationLink>
 );
-PaginationPrevious.displayName = "PaginationPrevious";
 
 const PaginationNext = ({
   className,
@@ -69,14 +69,13 @@ const PaginationNext = ({
   <PaginationLink
     aria-label="Go to next page"
     size="default"
-    className={`gap-1 pr-2.5 ${className || ''}`}
+    className={cn("gap-1 pr-2.5", className)}
     {...props}
   >
-    <span>Next</span>
-    <span>→</span>
+    <span className="hidden sm:inline">Next</span>
+    <span>{">"}</span>
   </PaginationLink>
 );
-PaginationNext.displayName = "PaginationNext";
 
 const PaginationEllipsis = ({
   className,
@@ -84,14 +83,12 @@ const PaginationEllipsis = ({
 }) => (
   <span
     aria-hidden
-    className={`flex h-9 w-9 items-center justify-center ${className || ''}`}
+    className={cn("flex h-9 w-9 items-center justify-center", className)}
     {...props}
   >
-    ...
-    <span className="sr-only">More pages</span>
+    &#8230;
   </span>
 );
-PaginationEllipsis.displayName = "PaginationEllipsis";
 
 export {
   Pagination,

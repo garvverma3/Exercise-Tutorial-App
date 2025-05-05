@@ -17,7 +17,7 @@ const bodyParts = [
   { id: "full-body", label: "Full Body" },
 ];
 
-// Sample workout data (same as in Workouts.jsx)
+// Sample workout data
 const workouts = [
   {
     id: "1",
@@ -68,9 +68,9 @@ const Categories = () => {
   });
 
   return (
-    <div className="min-h-screen pt-20 pb-10">
+    <div className="min-h-screen pt-16 pb-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-8">Browse Categories</h1>
+        <h1 className="text-3xl font-bold text-gray-900 mt-4 mb-8">Browse Categories</h1>
 
         {/* Difficulty Level Tabs */}
         <div className="mb-8">

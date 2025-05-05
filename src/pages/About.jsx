@@ -1,10 +1,10 @@
 
 const About = () => {
   return (
-    <div className="min-h-screen pt-20 pb-10">
+    <div className="min-h-screen pt-16 pb-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto">
-          <h1 className="text-4xl font-bold text-gray-900 mb-8">About FitFlow</h1>
+          <h1 className="text-4xl font-bold text-gray-900 mt-4 mb-8">About FitFlow</h1>
           
           <div className="prose prose-lg">
             <p className="text-gray-600 mb-6">

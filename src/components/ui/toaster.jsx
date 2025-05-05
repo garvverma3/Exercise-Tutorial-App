@@ -1,34 +1,50 @@
 
-import { useToast } from "@/hooks/use-toast"
-import {
-  Toast,
-  ToastClose,
-  ToastDescription,
-  ToastProvider,
-  ToastTitle,
-  ToastViewport,
-} from "@/components/ui/toast"
+import * as React from "react";
 
-export function Toaster() {
-  const { toasts } = useToast()
+const Toaster = () => {
+  const [toasts, setToasts] = React.useState([]);
+
+  React.useEffect(() => {
+    const handleToast = (event) => {
+      const { toast, type, id } = event.detail;
+      
+      if (type === 'add') {
+        setToasts((prev) => [...prev, toast]);
+      } else if (type === 'dismiss') {
+        setToasts((prev) => prev.filter((t) => t.id !== id));
+      }
+    };
+
+    document.addEventListener('toast', handleToast);
+    return () => document.removeEventListener('toast', handleToast);
+  }, []);
 
   return (
-    <ToastProvider>
-      {toasts.map(function ({ id, title, description, action, ...props }) {
-        return (
-          <Toast key={id} {...props}>
-            <div className="grid gap-1">
-              {title && <ToastTitle>{title}</ToastTitle>}
-              {description && (
-                <ToastDescription>{description}</ToastDescription>
-              )}
-            </div>
-            {action}
-            <ToastClose />
-          </Toast>
-        )
-      })}
-      <ToastViewport />
-    </ToastProvider>
-  )
-}
+    <div className="fixed top-4 right-4 z-50 flex flex-col gap-2">
+      {toasts.map((toast) => (
+        <div
+          key={toast.id}
+          className="bg-white rounded-lg shadow-md p-4 min-w-[300px] animate-in fade-in slide-in-from-right"
+        >
+          <div className="flex justify-between items-center">
+            <div className="font-medium">{toast.message}</div>
+            <button
+              onClick={() => {
+                document.dispatchEvent(
+                  new CustomEvent('toast', {
+                    detail: { id: toast.id, type: 'dismiss' }
+                  })
+                );
+              }}
+              className="text-gray-500 hover:text-gray-700"
+            >
+              ×
+            </button>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export { Toaster };

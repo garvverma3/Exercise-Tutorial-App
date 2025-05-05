@@ -8,6 +8,13 @@ const WorkoutCard = ({ title, difficulty, bodyPart, duration, thumbnail, id }) =
     Advanced: "bg-red-100 text-red-800",
   }[difficulty] || "bg-gray-100 text-gray-800";
 
+  const bodyPartColor = {
+    Arms: "bg-purple-100 text-purple-800",
+    Legs: "bg-blue-100 text-blue-800",
+    Core: "bg-indigo-100 text-indigo-800",
+    "Full Body": "bg-pink-100 text-pink-800",
+  }[bodyPart] || "bg-gray-100 text-gray-800";
+
   return (
     <Link to={`/workout/${id}`} className="group">
       <div className="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300">
@@ -29,7 +36,7 @@ const WorkoutCard = ({ title, difficulty, bodyPart, duration, thumbnail, id }) =
             <span className={`px-2 py-1 rounded-full text-xs ${difficultyColor}`}>
               {difficulty}
             </span>
-            <span className="px-2 py-1 rounded-full text-xs bg-purple-100 text-purple-800">
+            <span className={`px-2 py-1 rounded-full text-xs ${bodyPartColor}`}>
               {bodyPart}
             </span>
           </div>

@@ -1,9 +1,10 @@
 
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
@@ -16,7 +17,7 @@ const Navigation = () => {
   ];
 
   return (
-    <nav className="bg-white shadow-md fixed w-full z-50">
+    <nav className="bg-white shadow-sm fixed w-full z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex-shrink-0 flex items-center">
@@ -31,7 +32,9 @@ const Navigation = () => {
               <Link
                 key={item.path}
                 to={item.path}
-                className="text-gray-600 hover:text-[#9b87f5] transition-colors duration-200"
+                className={`text-gray-600 hover:text-[#9b87f5] transition-colors duration-200 ${
+                  location.pathname === item.path ? "text-[#9b87f5]" : ""
+                }`}
               >
                 {item.label}
               </Link>
@@ -58,7 +61,11 @@ const Navigation = () => {
                 <Link
                   key={item.path}
                   to={item.path}
-                  className="block px-3 py-2 text-gray-600 hover:text-[#9b87f5] transition-colors duration-200"
+                  className={`block px-3 py-2 transition-colors duration-200 ${
+                    location.pathname === item.path
+                      ? "text-[#9b87f5]"
+                      : "text-gray-600 hover:text-[#9b87f5]"
+                  }`}
                   onClick={() => setIsOpen(false)}
                 >
                   {item.label}
