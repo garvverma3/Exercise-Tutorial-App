@@ -1,50 +1,29 @@
 
-import * as React from "react";
+import React from 'react';
+import { useToast } from "../../hooks/use-toast";
 
-const Toaster = () => {
-  const [toasts, setToasts] = React.useState([]);
-
-  React.useEffect(() => {
-    const handleToast = (event) => {
-      const { toast, type, id } = event.detail;
-      
-      if (type === 'add') {
-        setToasts((prev) => [...prev, toast]);
-      } else if (type === 'dismiss') {
-        setToasts((prev) => prev.filter((t) => t.id !== id));
-      }
-    };
-
-    document.addEventListener('toast', handleToast);
-    return () => document.removeEventListener('toast', handleToast);
-  }, []);
+export function Toaster() {
+  const { toasts } = useToast();
 
   return (
-    <div className="fixed top-4 right-4 z-50 flex flex-col gap-2">
-      {toasts.map((toast) => (
-        <div
-          key={toast.id}
-          className="bg-white rounded-lg shadow-md p-4 min-w-[300px] animate-in fade-in slide-in-from-right"
-        >
-          <div className="flex justify-between items-center">
-            <div className="font-medium">{toast.message}</div>
-            <button
-              onClick={() => {
-                document.dispatchEvent(
-                  new CustomEvent('toast', {
-                    detail: { id: toast.id, type: 'dismiss' }
-                  })
-                );
-              }}
-              className="text-gray-500 hover:text-gray-700"
-            >
-              ×
-            </button>
+    <div className="fixed top-0 z-[100] flex flex-col gap-2 p-4 max-h-screen w-full">
+      {toasts.map(function ({ id, title, description, action, ...props }) {
+        return (
+          <div
+            key={id}
+            className="bg-white border rounded-md shadow-lg p-4 flex items-start gap-2"
+            {...props}
+          >
+            <div className="flex-1">
+              {title && <div className="font-semibold">{title}</div>}
+              {description && <div className="text-sm">{description}</div>}
+            </div>
+            {action}
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
-};
+}
 
-export { Toaster };
+export { useToast } from "../../hooks/use-toast";
