@@ -7,11 +7,11 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import Home from "./pages/Home";
 import Workouts from "./pages/Workouts";
-import WorkoutDetail from "./pages/WorkoutDetail.jsx";
-import Categories from "./pages/Categories.jsx";
-import About from "./pages/About.jsx";
-import Contact from "./pages/Contact.jsx";
-import NotFound from "./pages/NotFound.jsx";
+import WorkoutDetail from "./pages/WorkoutDetail";
+import Categories from "./pages/Categories";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
