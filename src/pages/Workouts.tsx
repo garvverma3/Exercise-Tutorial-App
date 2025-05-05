@@ -2,7 +2,7 @@
 import { useState } from "react";
 import WorkoutCard from "../components/WorkoutCard";
 import FilterBar from "../components/FilterBar";
-import { Pagination, PaginationContent, PaginationItem, PaginationLink } from "../components/ui/pagination";
+import { Pagination, PaginationContent, PaginationItem, PaginationLink } from "@/components/ui/pagination";
 
 // Sample workout data - expanded
 const workouts = [
@@ -89,7 +89,7 @@ const Workouts = () => {
   const currentWorkouts = filteredWorkouts.slice(indexOfFirstWorkout, indexOfLastWorkout);
   const totalPages = Math.ceil(filteredWorkouts.length / workoutsPerPage);
 
-  const handlePageChange = (pageNumber) => {
+  const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };

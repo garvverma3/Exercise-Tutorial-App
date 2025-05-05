@@ -1,7 +1,16 @@
 
 import { Link } from "react-router-dom";
 
-const WorkoutCard = ({ title, difficulty, bodyPart, duration, thumbnail, id }) => {
+interface WorkoutCardProps {
+  title: string;
+  difficulty: string;
+  bodyPart: string;
+  duration: string;
+  thumbnail: string;
+  id: string;
+}
+
+const WorkoutCard = ({ title, difficulty, bodyPart, duration, thumbnail, id }: WorkoutCardProps) => {
   const difficultyColor = {
     Beginner: "bg-green-100 text-green-800",
     Intermediate: "bg-yellow-100 text-yellow-800",
